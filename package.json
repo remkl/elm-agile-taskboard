@@ -1,0 +1,19 @@
+{
+  "name": "Agile Board",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Main.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["agile", "kanban", "task board"],
+  "author": "remkl",
+  "license": "MIT",
+  "devDependencies": {
+    "clear": "0.0.1",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
+    "st": "^1.1.0"
+  }
+}
