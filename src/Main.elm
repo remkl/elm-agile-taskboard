@@ -159,10 +159,10 @@ boardBody model =
             filterByStatus "Done" model.tasks
     in
         div [ class "board__container" ]
-            [ taskSection "Backlog" <| renderList backlog
-            , taskSection "Progressing" <| renderList progressing
-            , taskSection "Testing" <| renderList testing
-            , taskSection "Done" <| renderList done
+            [ taskSection "Backlog" backlog
+            , taskSection "Progressing" progressing
+            , taskSection "Testing" testing
+            , taskSection "Done" done
             ]
 
 
@@ -172,11 +172,16 @@ filterByStatus status tasks =
         |> List.filter (\t -> t.status == status)
 
 
-taskSection : String -> Html Msg -> Html Msg
+taskSection : String -> List Task -> Html Msg
 taskSection name list =
     div [ class "board__section", id name, attribute "ondragover" "return false", onDrop (DropTask name) ]
-        [ h3 [ class "board__section__header" ] [ text name ]
-        , div [ class "board__section__body" ] [ list ]
+        [ h3 [ class "board__section__header" ]
+            [ span [] [ text name ]
+            , span
+                [ class "list-count" ]
+                [ text <| toString <| List.length list ]
+            ]
+        , div [ class "board__section__body" ] [ renderList list ]
         ]
 
 
@@ -195,9 +200,15 @@ taskList task =
     in
         li [ class ("task__item"), attribute "draggable" "true", onDragStart (DragTask task) ]
             [ div [ class "task__item__header" ]
-                [ span [ class "task__delete", onClick (DeleteTask task) ] [ text "X" ]
+                [ span
+                    [ class "task__delete"
+                    , onClick (DeleteTask task)
+                    ]
+                    [ text "X" ]
                 ]
-            , p [ class "task__item__body" ] [ text description ]
+            , p
+                [ class "task__item__body" ]
+                [ text description ]
             ]
 
 

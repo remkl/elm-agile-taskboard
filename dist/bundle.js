@@ -8402,60 +8402,6 @@ var _user$project$Main$Model = F3(
 var _user$project$Main$DropTask = function (a) {
 	return {ctor: 'DropTask', _0: a};
 };
-var _user$project$Main$taskSection = F2(
-	function (name, list) {
-		return A2(
-			_elm_lang$html$Html$div,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('board__section'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$id(name),
-					_1: {
-						ctor: '::',
-						_0: A2(_elm_lang$html$Html_Attributes$attribute, 'ondragover', 'return false'),
-						_1: {
-							ctor: '::',
-							_0: _user$project$Main$onDrop(
-								_user$project$Main$DropTask(name)),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			},
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$h3,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('board__section__header'),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text(name),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('board__section__body'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: list,
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			});
-	});
 var _user$project$Main$DragTask = function (a) {
 	return {ctor: 'DragTask', _0: a};
 };
@@ -8539,6 +8485,84 @@ var _user$project$Main$renderList = function (tasks) {
 		},
 		A2(_elm_lang$core$List$map, _user$project$Main$taskList, tasks));
 };
+var _user$project$Main$taskSection = F2(
+	function (name, list) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('board__section'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$id(name),
+					_1: {
+						ctor: '::',
+						_0: A2(_elm_lang$html$Html_Attributes$attribute, 'ondragover', 'return false'),
+						_1: {
+							ctor: '::',
+							_0: _user$project$Main$onDrop(
+								_user$project$Main$DropTask(name)),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$h3,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('board__section__header'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$span,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(name),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('list-count'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(
+											_elm_lang$core$List$length(list))),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('board__section__body'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _user$project$Main$renderList(list),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
 var _user$project$Main$boardBody = function (model) {
 	var done = A2(_user$project$Main$filterByStatus, 'Done', model.tasks);
 	var testing = A2(_user$project$Main$filterByStatus, 'Testing', model.tasks);
@@ -8553,28 +8577,16 @@ var _user$project$Main$boardBody = function (model) {
 		},
 		{
 			ctor: '::',
-			_0: A2(
-				_user$project$Main$taskSection,
-				'Backlog',
-				_user$project$Main$renderList(backlog)),
+			_0: A2(_user$project$Main$taskSection, 'Backlog', backlog),
 			_1: {
 				ctor: '::',
-				_0: A2(
-					_user$project$Main$taskSection,
-					'Progressing',
-					_user$project$Main$renderList(progressing)),
+				_0: A2(_user$project$Main$taskSection, 'Progressing', progressing),
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_user$project$Main$taskSection,
-						'Testing',
-						_user$project$Main$renderList(testing)),
+					_0: A2(_user$project$Main$taskSection, 'Testing', testing),
 					_1: {
 						ctor: '::',
-						_0: A2(
-							_user$project$Main$taskSection,
-							'Done',
-							_user$project$Main$renderList(done)),
+						_0: A2(_user$project$Main$taskSection, 'Done', done),
 						_1: {ctor: '[]'}
 					}
 				}

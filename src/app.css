@@ -63,6 +63,14 @@ body {
 .board__section__header {
   font-size: 1.25em;
   text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.list-count {
+  margin-left: 10px;
+  font-size: 0.9em;
+  color: silver;
 }
 
 .task__list {
