@@ -21,8 +21,8 @@ gulp.task('server', function(done) {
   http
     .createServer(
       st({
-        path: __dirname,
-        index: './dist/index.html',
+        path: __dirname + '/dist',
+        index: 'index.html',
         cache: false
       })
     )
